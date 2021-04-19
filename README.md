@@ -1,3 +1,3 @@
 # test_academy
 * Развертка
-* docker-compose up -d
+`docker-compose up -d`
