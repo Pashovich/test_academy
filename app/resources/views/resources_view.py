@@ -20,7 +20,7 @@ class ResourcesView(APIView):
         return_data['total_count'] = len(return_data.get('resources', []))
         return Response(
             data=return_data,
-            status=201
+            status=200
         )
 
     def post(self, request):
@@ -35,7 +35,7 @@ class ResourcesView(APIView):
             serializer.save()
         return Response(
             data=serializer.data,
-            status=200
+            status=201
         )
 
     def put(self, request):
