@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-)%qhuxj+*ho7o7+t(&v(=3c2+81oduzp*iwzqduu32opsb%cxt
 import os
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,7 +87,6 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
-print(DATABASES)
 
 
 # Password validation
