@@ -87,7 +87,6 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
-print(DATABASES)
 
 
 # Password validation
