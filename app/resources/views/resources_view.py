@@ -9,16 +9,26 @@ from resources.serializers import ResourcesSerializer
 
 class ResourcesView(APIView):
     def get(self, request):
+        '''
+        Метод получения всех материалов
+        :param request:
+        :return: Response
+        '''
         return_data = dict()
         data = Resources.objects.all()
         return_data['resorces'] = ResourcesSerializer(data, many=True).data
         return_data['total_count'] = len(return_data.get('resources', []))
         return Response(
             data=return_data,
-            status=200
+            status=201
         )
 
     def post(self, request):
+        '''
+        Метод создания метриала
+        :param request:
+        :return:
+        '''
         resource_data = request.data
         serializer = ResourcesSerializer(data=resource_data)
         if serializer.is_valid(raise_exception=True):
@@ -29,6 +39,12 @@ class ResourcesView(APIView):
         )
 
     def put(self, request):
+        '''
+        Метод обновления материала по id в параметрах
+        и отстальных данных в параметрах
+        :param request:
+        :return: Response
+        '''
         pk = request.query_params.get("id", None)
         saved_article = get_object_or_404(Resources.objects.all(), pk=pk)
         data = request.query_params
@@ -37,15 +53,15 @@ class ResourcesView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
 
-        return Response(
-            {"message": "Updated"},
-            status=200
-        )
+        return Response(status=204)
 
     def delete(self, request):
+        '''
+        Удаление материала по id в параметре
+        :param request:
+        :return: Response
+        '''
         pk = request.query_params.get("id", None)
         resource = get_object_or_404(Resources.objects.all(), pk=pk)
         resource.delete()
-        return Response(
-            {"message": f"Deleted {pk} resource"},
-            status=204)
+        return Response(status=204)

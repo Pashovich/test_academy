@@ -9,4 +9,3 @@ class Resources(models.Model):
     price = models.IntegerField()
     cost = models.IntegerField()
     date = models.DateField()
-# Create your models here.
